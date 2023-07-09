@@ -18,11 +18,22 @@ jobs:
     steps:
       - name: Now it is
         run: |
-          date        
+          echo date
   directory_content_job:
     runs-on: ubuntu-20.04
     steps:
-     - name: Directory content
-       run: |
-        ls -l
+      - name: Directory content
+        run: |
+          echo ls -l
+  simple_deployment_pipeline:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: action/checkout@v3
+      - uses: action/setup-node@v3
+        with:
+          node-version: '16'
+      - name: Install dependencies
+        run: npm install
+      - name: Check style
+        run: npm run eslint
       
